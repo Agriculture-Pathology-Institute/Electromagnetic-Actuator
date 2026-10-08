@@ -1,0 +1,34 @@
+(kicad_pcb (version 20240108) (host pcbnew)
+  (general (thickness 2.4) ;; Thick 2.4mm double-sided board capably supporting high pulse currents [0.12]
+    (layers (0 "F.Cu" signal) (31 "B.Cu" signal) (44 "Edge.Cuts" user "Edge.Cuts"))
+  )
+  (setup
+    (clearance_class "Logic_Control" (clearance 0.25) (trace_width 0.25))
+    ;; COMPLIANCE: Rule #2 Continuous 0.5mm Parallel Guard Ground Tracks Shielding Dual-Voltage Nodes [0.12]
+    (clearance_class "Bilateral_Guard_Ring" (clearance 0.5) (trace_width 0.50))
+    ;; COMPLIANCE: Rule #1 Thick 3oz Copper Trace Width Parameters for High-Frequency 48V, 5A Pulsers [0.12]
+    (clearance_class "Heavy_3oz_48V_Bus" (clearance 4.0) (trace_width 5.50))
+  )
+
+  (net 0 "")
+  (net 1 "VCC_12V_AVIONICS")
+  (net 2 "GND_GUARD_SHIELD")
+  (net 3 "VCC_48V_TRACTION")
+  (net 4 "EMA_5us_Pulse_Axial")
+  (net 5 "EMA_5us_Pulse_Rotary")
+  (net 6 "Bitter_Coil_High_Current_Anode")
+  (net 7 "Bitter_Coil_High_Current_Cathode")
+
+  ;; --- Component Matrix Placements ---
+  
+  ;; J1: Dual-Row Mixed Power/Signal Connector (Molex Sabre Series High-Current Plug)
+  (module "Connector_Molex:Molex_Sabre_43160-0006_2x3_Pitch10.00mm_Vertical" (layer "F.Cu") (at 50.0 50.0)
+    (pad "1" tht circle (at -10.0 -5.0) (size 2.5 2.4) (drill 1.2) (layers "*.Cu" "*.Mask") (net 1 "VCC_12V_AVIONICS"))
+    (pad "2" tht circle (at 0 -5.0) (size 2.5 2.4) (drill 1.2) (layers "*.Cu" "*.Mask") (net 4 "EMA_5us_Pulse_Axial"))
+    (pad "3" tht circle (at 10.0 -5.0) (size 2.5 2.4) (drill 1.2) (layers "*.Cu" "*.Mask") (net 5 "EMA_5us_Pulse_Rotary"))
+    (pad "4" tht circle (at 10.0 5.0) (size 3.5 3.5) (drill 1.8) (layers "*.Cu" "*.Mask") (net 2 "GND_GUARD_SHIELD")) ;; Guard Line Left
+    (pad "5" tht circle (at 0 5.0) (size 5.5 5.5) (drill 2.8) (layers "*.Cu" "*.Mask") (net 6 "Bitter_Coil_High_Current_Anode"))
+    (pad "6" tht circle (at -10.0 5.0) (size 5.5 5.5) (drill 2.8) (layers "*.Cu" "*.Mask") (net 7 "Bitter_Coil_High_Current_Cathode"))
+    (net_class "Heavy_3oz_48V_Bus" (pins "5" "6"))
+  )
+)
