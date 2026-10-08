@@ -1,0 +1,26 @@
+====================================================================================
+GUNDAM ROBOTICS SYSTEMS & UNIVERSITY OF WASHINGTON DEPARTMENT OF PHYSICS
+Subsystem: fma_dual_voltage_harness.txt (Post-Body Dual-Voltage Actuator Loom)
+Core Objective: 12V Logic / 48V Power Pin Landing Grid Matrix for MDOF Power-by-Wire
+Compliance: Rule #1 (3oz Copper Rails) & Rule #2 (Bilateral 0.5mm Guard Ground Rings)
+====================================================================================
+
+[TERMINAL J1_EMA_PWR: HIGH-CURRENT 48V, 5A BITTER COIL INJECTION BUS]
+* Dedicated to supplying the high-frequency multi-phase power pulses to drive the rods
+* Pin 1  [48V_TRACTION_ANODE]   <--> Heavy 3oz copper supply line feeding Phase Alpha Bitter coils
+* Pin 2  [48V_TRACTION_CATHODE] <--> Heavy 3oz copper return line feeding Phase Alpha Bitter coils
+* Pin 3  [48V_HELICAL_ANODE]    <--> Heavy 3oz copper supply line feeding Phase Beta Twist coils
+* Pin 4  [48V_HELICAL_CATHODE]  <--> Heavy 3oz copper return line feeding Phase Beta Twist coils
+* Pin 5  [GND_CHASSIS_STATIC]   <--> Primary static structural ground frame return path
+* Pin 6  [GND_GUARD_SHIELD]     <--> Rule #2 Heavy continuous barrier isolating power rails
+
+[TERMINAL J2_EMA_LOGIC: LOW-VOLTAGE 12V INTERLOCK SIGNALLING MUX]
+* Dedicated to monitoring the 5µs synchronizer gates, temperatures, and position limits
+* Pin 1  [12V_AVIONICS_SOURCE]  <--> Powers internal active logic gate sensors and monitors
+* Pin 2  [PULSE_SYNC_AXIAL]     <--> 5-Microsecond pulse signal triggering linear travel stroke
+* Pin 3  [PULSE_SYNC_ROTARY]    <--> 5-Microsecond pulse signal triggering angular twist indexing
+* Pin 4  [COIL_THERMAL_FEED]    <--> 16-state linear voltage path checking Bitter layer heat indices
+* Pin 5  [STROKE_ENCODER_SIG]   <--> Position verification loop checking actual rod height
+* Pin 6  [GND_GUARD_SHIELD]     <--> Rule #2 Parallel 0.5mm ground track shielding logic lines
+
+====================================================================================
